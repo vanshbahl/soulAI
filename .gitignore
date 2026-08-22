@@ -1,0 +1,39 @@
+# Xcode
+## User settings
+xcuserdata/
+
+## Build generated
+build/
+DerivedData/
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
+
+## Various settings & cache
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+## Swift Package Manager
+.build/
+Packages/
+Package.pins
+Package.resolved
+*.xcodeproj
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+
+## Environment Variables & Secrets
+.env
+.env.*
+*.local
+
+## OS & IDE
+.vscode/
+.idea/
+*.swp
+*.bak
+tmp/
