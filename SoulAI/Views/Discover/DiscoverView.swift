@@ -3,8 +3,10 @@ import SwiftUI
 public struct DiscoverView: View {
     @Environment(AppState.self) private var appState
     @State private var viewModel = DiscoverViewModel()
+    @State private var selectedMode: DiscoverMode = .forYou
     @State private var showFilterSheet: Bool = false
-    @State private var showSearchSheet: Bool = false
+    @State private var showAiInsightSheet: Bool = false
+    @State private var selectedInsightProfile: MatchProfile? = nil
 
     public init() {}
 
@@ -12,35 +14,51 @@ public struct DiscoverView: View {
         ZStack {
             BackgroundAtmosphereView()
 
-            VStack(spacing: 12) {
-                // Top Editorial Header
-                headerView
-                    .padding(.horizontal, 22)
-                    .padding(.top, 12)
+            VStack(spacing: 8) {
+                // Top Header (Logo, Mode Selector, Filter Button)
+                DiscoverHeader(selectedMode: $selectedMode) {
+                    showFilterSheet.toggle()
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 8)
 
-                // Main 75% Hero Card Stack Deck
+                // Main 85% Hero Portrait Card Deck
                 ZStack {
                     if viewModel.deck.isEmpty {
                         emptyDeckView
                     } else {
-                        // Background Card
+                        // Background Next Card
                         if let next = viewModel.nextProfile {
-                            ProfileCardView(profile: next) {
-                                appState.selectedMatchForDetail = next
-                            }
-                            .scaleEffect(0.96)
+                            PremiumProfileCard(
+                                profile: next,
+                                onAiInsightTap: {
+                                    selectedInsightProfile = next
+                                    showAiInsightSheet = true
+                                },
+                                onCardTap: {
+                                    appState.selectedMatchForDetail = next
+                                }
+                            )
+                            .scaleEffect(0.95)
                             .offset(y: 12)
-                            .opacity(0.8)
+                            .opacity(0.85)
                             .allowsHitTesting(false)
                         }
 
-                        // Foreground Swiping Card
+                        // Foreground Swiping Hero Card
                         if let top = viewModel.topProfile {
-                            ProfileCardView(profile: top) {
-                                appState.selectedMatchForDetail = top
-                            }
+                            PremiumProfileCard(
+                                profile: top,
+                                onAiInsightTap: {
+                                    selectedInsightProfile = top
+                                    showAiInsightSheet = true
+                                },
+                                onCardTap: {
+                                    appState.selectedMatchForDetail = top
+                                }
+                            )
                             .offset(viewModel.cardOffset)
-                            .rotationEffect(.degrees(Double(viewModel.cardOffset.width / 22)))
+                            .rotationEffect(.degrees(Double(viewModel.cardOffset.width / 24)))
                             .gesture(
                                 DragGesture()
                                     .onChanged { value in
@@ -59,17 +77,32 @@ public struct DiscoverView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.horizontal, 18)
+                .padding(.horizontal, 14)
 
-                // Bottom Floating Action Buttons
+                // Bottom Floating Action Bar (Pass, AI Insight, Like)
                 if !viewModel.deck.isEmpty {
-                    actionButtonsBar
-                        .padding(.horizontal, 36)
-                        .padding(.bottom, 26)
+                    FloatingActionBar(
+                        onPass: {
+                            viewModel.swipeCard(direction: .left)
+                        },
+                        onAiInsight: {
+                            if let top = viewModel.topProfile {
+                                selectedInsightProfile = top
+                                showAiInsightSheet = true
+                            }
+                        },
+                        onLike: {
+                            viewModel.swipeCard(direction: .right) { matched in
+                                appState.likeProfile(matched)
+                            }
+                        }
+                    )
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 80) // Space above floating tab bar
                 }
             }
 
-            // Celebration Modal on Match
+            // Match Celebration Modal on Match
             if viewModel.showMatchModal, let matched = viewModel.matchedProfile {
                 MatchCelebrationModal(
                     match: matched,
@@ -88,103 +121,13 @@ public struct DiscoverView: View {
         .sheet(item: Bindable(appState).selectedMatchForDetail) { match in
             MatchDetailView(match: match)
         }
+        .sheet(isPresented: $showAiInsightSheet) {
+            if let profile = selectedInsightProfile ?? viewModel.topProfile {
+                AIInsightSheet(match: profile)
+            }
+        }
         .sheet(isPresented: $showFilterSheet) {
             filterSheetView
-        }
-    }
-
-    // MARK: - Header
-    private var headerView: some View {
-        HStack {
-            // SoulAI Editorial Logo
-            HStack(spacing: 4) {
-                Text("SoulAI")
-                    .font(.system(size: 28, weight: .bold, design: .serif))
-                    .foregroundColor(AppColors.textPrimary)
-
-                Circle()
-                    .fill(AppColors.accentCoral)
-                    .frame(width: 6, height: 6)
-            }
-
-            Spacer()
-
-            // Action Icons (Search & Filters)
-            HStack(spacing: 10) {
-                Button(action: { showSearchSheet.toggle() }) {
-                    Image(systemName: "magnifyingglass")
-                        .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(AppColors.textPrimary)
-                        .frame(width: 38, height: 38)
-                        .background(AppColors.surfaceWhite)
-                        .clipShape(Circle())
-                        .shadow(color: AppColors.subtleShadow, radius: 6, y: 2)
-                }
-
-                Button(action: { showFilterSheet.toggle() }) {
-                    Image(systemName: "slider.horizontal.3")
-                        .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(AppColors.textPrimary)
-                        .frame(width: 38, height: 38)
-                        .background(AppColors.surfaceWhite)
-                        .clipShape(Circle())
-                        .shadow(color: AppColors.subtleShadow, radius: 6, y: 2)
-                }
-            }
-        }
-    }
-
-    // MARK: - Floating Action Buttons (X Reject, Heart Like, AI Insight)
-    private var actionButtonsBar: some View {
-        HStack(spacing: 28) {
-            // Reject (X)
-            Button(action: {
-                viewModel.swipeCard(direction: .left)
-            }) {
-                Image(systemName: "xmark")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(AppColors.textSecondary)
-                    .frame(width: 58, height: 58)
-                    .background(AppColors.surfaceWhite)
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(AppColors.borderSubtle, lineWidth: 1)
-                    )
-                    .shadow(color: AppColors.subtleShadow, radius: 8, y: 4)
-            }
-
-            // AI Insight Sparkle
-            Button(action: {
-                if let top = viewModel.topProfile {
-                    appState.selectedMatchForDetail = top
-                }
-            }) {
-                Image(systemName: "sparkles")
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(AppColors.accentCoral)
-                    .frame(width: 48, height: 48)
-                    .background(AppColors.surfaceWhite)
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(AppColors.borderSubtle, lineWidth: 1)
-                    )
-                    .shadow(color: AppColors.subtleShadow, radius: 6, y: 3)
-            }
-
-            // Heart Like (Primary Coral)
-            Button(action: {
-                viewModel.swipeCard(direction: .right) { matched in
-                    appState.likeProfile(matched)
-                }
-            }) {
-                Image(systemName: "heart.fill")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.white)
-                    .frame(width: 66, height: 66)
-                    .background(AppColors.accentCoral)
-                    .clipShape(Circle())
-                    .shadow(color: AppColors.buttonShadow, radius: 14, y: 6)
-            }
         }
     }
 
