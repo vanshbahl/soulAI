@@ -189,3 +189,8 @@ public struct MatchListView: View {
         }
     }
 }
+
+#Preview {
+    MatchListView()
+        .environment(AppState())
+}

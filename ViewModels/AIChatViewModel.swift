@@ -1,6 +1,7 @@
 import SwiftUI
 import Observation
 
+@MainActor
 @Observable
 public final class AIChatViewModel {
     public var match: MatchProfile

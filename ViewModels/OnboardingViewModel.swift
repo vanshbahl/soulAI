@@ -9,6 +9,7 @@ public enum OnboardingStep: Int, CaseIterable {
     case aiSynthesis = 4
 }
 
+@MainActor
 @Observable
 public final class OnboardingViewModel {
     public var currentStep: OnboardingStep = .basicInfo

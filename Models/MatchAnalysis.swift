@@ -1,6 +1,6 @@
 import Foundation
 
-public struct CompatibilityDimension: Identifiable, Codable {
+public struct CompatibilityDimension: Identifiable, Codable, Sendable {
     public let id: UUID
     public let title: String
     public let score: Int // 0 - 100
@@ -14,7 +14,7 @@ public struct CompatibilityDimension: Identifiable, Codable {
     }
 }
 
-public struct MatchAnalysis: Identifiable, Codable {
+public struct MatchAnalysis: Identifiable, Codable, Sendable {
     public let id: UUID
     public let overallScore: Int
     public let matchTagline: String

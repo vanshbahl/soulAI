@@ -89,3 +89,8 @@ public struct MainTabView: View {
         .shadow(color: Color.black.opacity(0.4), radius: 20, x: 0, y: 10)
     }
 }
+
+#Preview {
+    MainTabView()
+        .environment(AppState())
+}

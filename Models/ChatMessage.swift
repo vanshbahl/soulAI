@@ -1,13 +1,13 @@
 import Foundation
 
-public enum MessageSender: String, Codable {
+public enum MessageSender: String, Codable, Sendable {
     case currentUser
     case matchUser
     case soulAIAssistant
     case coach
 }
 
-public struct ChatMessage: Identifiable, Codable {
+public struct ChatMessage: Identifiable, Codable, Sendable {
     public let id: UUID
     public let sender: MessageSender
     public let content: String

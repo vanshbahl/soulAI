@@ -269,3 +269,8 @@ public struct DatingCoachView: View {
         .background(.ultraThinMaterial)
     }
 }
+
+#Preview {
+    DatingCoachView()
+        .environment(AppState())
+}

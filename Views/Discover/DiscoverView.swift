@@ -255,3 +255,8 @@ public struct DiscoverView: View {
         }
     }
 }
+
+#Preview {
+    DiscoverView()
+        .environment(AppState())
+}

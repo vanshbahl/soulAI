@@ -65,7 +65,9 @@ public struct AIChatView: View {
                     chatInputBar
                 }
             }
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack(spacing: 10) {
@@ -92,7 +94,7 @@ public struct AIChatView: View {
                     }
                 }
 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .automatic) {
                     Button(action: { dismiss() }) {
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 20))
@@ -289,4 +291,9 @@ public struct AIChatView: View {
         formatter.timeStyle = .short
         return formatter.string(from: date)
     }
+}
+
+#Preview {
+    AIChatView(match: MockDataProvider.sampleMatches[0])
+        .environment(AppState())
 }

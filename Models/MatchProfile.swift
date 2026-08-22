@@ -1,6 +1,6 @@
 import Foundation
 
-public struct MatchProfile: Identifiable, Codable {
+public struct MatchProfile: Identifiable, Codable, Sendable {
     public let id: UUID
     public let name: String
     public let age: Int

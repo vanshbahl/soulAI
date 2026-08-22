@@ -1,6 +1,6 @@
 import Foundation
 
-public enum DatingIntention: String, CaseIterable, Identifiable, Codable {
+public enum DatingIntention: String, CaseIterable, Identifiable, Codable, Sendable {
     case longTerm = "Soulmate & Long-term"
     case lifePartner = "Deep Connection"
     case casualExploring = "Thoughtful Dating"
@@ -18,7 +18,7 @@ public enum DatingIntention: String, CaseIterable, Identifiable, Codable {
     }
 }
 
-public struct PersonalityTrait: Identifiable, Hashable, Codable {
+public struct PersonalityTrait: Identifiable, Hashable, Codable, Sendable {
     public let id: String
     public let name: String
     public let icon: String
@@ -32,7 +32,7 @@ public struct PersonalityTrait: Identifiable, Hashable, Codable {
     }
 }
 
-public struct PersonalityInsight: Identifiable, Codable {
+public struct PersonalityInsight: Identifiable, Codable, Sendable {
     public let id: UUID
     public let title: String
     public let value: String
@@ -57,7 +57,7 @@ public struct PersonalityInsight: Identifiable, Codable {
     }
 }
 
-public struct UserProfile: Identifiable, Codable {
+public struct UserProfile: Identifiable, Codable, Sendable {
     public var id: UUID
     public var name: String
     public var age: Int

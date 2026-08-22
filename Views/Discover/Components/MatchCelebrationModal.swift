@@ -31,7 +31,7 @@ public struct MatchCelebrationModal: View {
                         Image(systemName: "sparkles")
                             .foregroundColor(AppColors.auroraTeal)
                             .font(.system(size: 24))
-                            .symbolEffect(.bounce, options: .repeating)
+                            .symbolEffect(.pulse, options: .repeating)
                         Text("It's a Soul Match!")
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(AppColors.soulGradient)

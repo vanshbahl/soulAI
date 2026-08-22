@@ -9,6 +9,7 @@ public enum MatchFilter: String, CaseIterable, Identifiable {
     public var id: String { rawValue }
 }
 
+@MainActor
 @Observable
 public final class MatchViewModel {
     public var filter: MatchFilter = .all

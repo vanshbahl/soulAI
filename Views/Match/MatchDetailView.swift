@@ -44,9 +44,11 @@ public struct MatchDetailView: View {
                 }
             }
             .navigationTitle("Soul Compatibility")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .automatic) {
                     Button(action: { dismiss() }) {
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 20))
@@ -304,4 +306,9 @@ public struct MatchDetailView: View {
             }
         }
     }
+}
+
+#Preview {
+    MatchDetailView(match: MockDataProvider.sampleMatches[0])
+        .environment(AppState())
 }

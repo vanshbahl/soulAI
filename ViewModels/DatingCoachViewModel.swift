@@ -1,6 +1,7 @@
 import SwiftUI
 import Observation
 
+@MainActor
 @Observable
 public final class DatingCoachViewModel {
     public var categories: [DatingCoachPromptCategory] = MockDataProvider.sampleCoachCategories

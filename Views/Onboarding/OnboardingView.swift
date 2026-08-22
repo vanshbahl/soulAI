@@ -418,3 +418,8 @@ public struct OnboardingView: View {
         .opacity(viewModel.canProceed ? 1.0 : 0.5)
     }
 }
+
+#Preview {
+    OnboardingView()
+        .environment(AppState())
+}

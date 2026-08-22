@@ -10,6 +10,7 @@ public enum BioToneStyle: String, CaseIterable, Identifiable {
     public var id: String { rawValue }
 }
 
+@MainActor
 @Observable
 public final class ProfileViewModel {
     public var user: UserProfile

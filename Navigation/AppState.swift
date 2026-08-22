@@ -19,6 +19,7 @@ public enum AppTab: String, CaseIterable, Identifiable {
     }
 }
 
+@MainActor
 @Observable
 public final class AppState {
     public var isOnboarded: Bool = true // Set default to true for preview, togglable in settings

@@ -7,6 +7,7 @@ public enum SwipeDirection {
     case up    // Super Like / Deep Match
 }
 
+@MainActor
 @Observable
 public final class DiscoverViewModel {
     public var deck: [MatchProfile] = []

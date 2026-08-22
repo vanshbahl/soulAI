@@ -1,6 +1,6 @@
 import Foundation
 
-public struct DatingCoachPromptCategory: Identifiable, Codable {
+public struct DatingCoachPromptCategory: Identifiable, Codable, Sendable {
     public let id: String
     public let title: String
     public let icon: String
@@ -14,7 +14,7 @@ public struct DatingCoachPromptCategory: Identifiable, Codable {
     }
 }
 
-public struct DatingCoachAdviceCard: Identifiable, Codable {
+public struct DatingCoachAdviceCard: Identifiable, Codable, Sendable {
     public let id: UUID
     public let title: String
     public let category: String

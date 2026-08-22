@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-public struct MockDataProvider {
+public struct MockDataProvider: Sendable {
     public static let sampleUser = UserProfile(
         id: UUID(uuidString: "11111111-1111-1111-1111-111111111111")!,
         name: "Alex",
