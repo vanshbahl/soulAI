@@ -1,62 +1,53 @@
-# Application Navigation & User Flow - SoulAI
+# Application Flow & Navigation - SoulAI
 
 ```mermaid
 flowchart TD
-    A[Launch SoulAI App] --> B{isOnboarded?}
-    B -- No --> C[OnboardingView Flow]
-    C --> C1[Step 1: Name, Age, Craft, Location]
-    C1 --> C2[Step 2: Curiosity & Interests]
-    C2 --> C3[Step 3: Essence Traits]
-    C3 --> C4[Step 4: Dating Intention]
-    C4 --> C5[Step 5: AI Neural Synthesis & Bio Preview]
-    C5 --> D[Complete Onboarding -> MainTabView]
+    A[Launch SoulAI] --> B{isOnboarded?}
+    B -- No --> C[Editorial Onboarding Flow]
+    C --> C1[1. Name & Age]
+    C1 --> C2[2. Curiosity Interests]
+    C2 --> C3[3. Essence Traits]
+    C3 --> C4[4. Dating Intention]
+    C4 --> C5[5. Personality Summary Preview]
+    C5 --> D[MainTabView: 5 Floating Tabs]
     B -- Yes --> D
 
-    subgraph "Main Navigation (Floating TabBar)"
-        D --> E[DiscoverView]
-        D --> F[MatchListView]
-        D --> G[DatingCoachView]
-        D --> H[ProfileView]
+    subgraph "5-Tab Floating Navigation"
+        D --> T1[1. Discover]
+        D --> T2[2. Matches]
+        D --> T3[3. Conversations]
+        D --> T4[4. AI Coach]
+        D --> T5[5. Profile]
     end
 
-    subgraph "Discover Deck Interactions"
-        E --> E1[Drag Card Left: Pass]
-        E --> E2[Drag Card Right: Like]
-        E --> E3[Drag Card Up: Super Like]
-        E2 --> E4[Match Celebration Modal]
-        E3 --> E4
-        E4 --> I[Launch AIChatView]
-        E --> E5[Tap: Full Compatibility Breakdown]
-        E5 --> J[MatchDetailView Sheet]
+    subgraph "Hero Discover Experience"
+        T1 --> T1A[75% Full Bleed Portrait Card]
+        T1 --> T1B[Tap ✦: View Compatibility Sheet]
+        T1 --> T1C[Swipe / Heart: Like Profile]
+        T1 --> T1D[Swipe / Xmark: Reject Profile]
+        T1C --> M1[Emotional Match Celebration Modal]
+        M1 --> T3A[Direct Chat with Match]
     end
 
-    subgraph "Match List & Detail Interactions"
-        F --> F1[Filter / Search Matches]
-        F --> J
-        F --> I
-        J --> I
-        J --> G
+    subgraph "Conversations & Chat"
+        T3 --> T3List[Active Connections & Chats]
+        T3List --> T3A[iMessage-Style Chat View]
+        T3A --> T3B[Discreet 'Need help replying?' Pill]
+        T3B --> T3C[Bottom Sheet: 3 Natural AI Replies]
+        T3C --> T3A
     end
 
-    subgraph "AI Chat Experience"
-        I --> I1[Read Match Intro & Score]
-        I --> I2[Send Custom Message]
-        I --> I3[Tap 1-Touch Smart Reply]
-        I2 --> I4[Simulated Match Typing & Reply]
-        I3 --> I4
+    subgraph "AI Dating Companion"
+        T4 --> T4A["Help me start a conversation"]
+        T4 --> T4B["Make my reply more playful"]
+        T4 --> T4C["Understand this message"]
+        T4 --> T4D[Conversational Guidance Stream]
     end
 
-    subgraph "Dating Coach Guidance"
-        G --> G1[Select Category Chips]
-        G --> G2[Browse Action Playbooks]
-        G --> G3[Ask Custom Question / Tap Quick Prompt]
-        G3 --> G4[AI Coach Analysis Stream]
-    end
-
-    subgraph "Profile Management"
-        H --> H1[View Personality Insights]
-        H --> H2[Regenerate Bio Tone: Warm/Poetic/Witty/Direct]
-        H --> H3[Restart Onboarding Demo Utility]
-        H3 --> C
+    subgraph "Minimal Profile"
+        T5 --> T5A[Large Circular Portrait]
+        T5 --> T5B[Essence: 'Creative Explorer']
+        T5 --> T5C[3 Clean Interests & Intention]
+        T5 --> T5D[Restart Demo Utility]
     end
 ```

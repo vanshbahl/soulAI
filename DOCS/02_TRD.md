@@ -11,47 +11,50 @@
 
 ```
 SoulAI/
-├── SoulAIApp.swift               # Application lifecycle entry point
-├── Theme/
-│   ├── AppColors.swift           # Semantic hex colors, gradients & dark canvas
-│   └── DesignTokens.swift        # Radii, glassmorphic modifiers, spacing
-├── Models/
-│   ├── UserProfile.swift         # User model, intentions, personality insights
-│   ├── MatchProfile.swift        # AI match model, vibe tags, profile metadata
-│   ├── MatchAnalysis.swift       # Strengths, challenges, dimension metrics
-│   ├── ChatMessage.swift         # Chat bubbles, sender enums, suggestion pills
-│   └── DatingCoachTopic.swift    # AI Coach playbooks, categories, prompts
-├── MockData/
-│   └── MockDataProvider.swift   # Curated sample database of matches & dialogues
-├── Components/
-│   ├── GlassCard.swift           # Reusable frosted glass container
-│   ├── SoulButton.swift          # Gradient CTA buttons with haptics & states
-│   ├── CompatibilityBadge.swift  # Pulsing score gauge pill
-│   ├── TagPillView.swift         # Selectable and static trait/interest chips
-│   └── BackgroundAtmosphereView.swift # Ambient floating blurred gradient orbs
-├── Navigation/
-│   ├── AppState.swift            # Central state & sheet coordinator
-│   └── MainTabView.swift         # Floating glass tab bar
-├── ViewModels/
-│   ├── OnboardingViewModel.swift # Step navigation & AI bio synthesizer
-│   ├── DiscoverViewModel.swift   # Swipe card physics & deck lifecycle
-│   ├── MatchViewModel.swift      # Match filtering & search
-│   ├── AIChatViewModel.swift     # Simulated typing & message generation
-│   ├── DatingCoachViewModel.swift# Relationship advice engine
-│   └── ProfileViewModel.swift    # Bio tone regeneration & profile state
-└── Views/
-    ├── Onboarding/OnboardingView.swift
-    ├── Discover/
-    │   ├── DiscoverView.swift
-    │   └── Components/
-    │       ├── ProfileCardView.swift
-    │       └── MatchCelebrationModal.swift
-    ├── Match/
-    │   ├── MatchListView.swift
-    │   └── MatchDetailView.swift
-    ├── Chat/AIChatView.swift
-    ├── Coach/DatingCoachView.swift
-    └── Profile/ProfileView.swift
+├── SoulAI.xcodeproj/             # Native Xcode Project & Schemes
+├── SoulAI/
+│   ├── SoulAIApp.swift           # Application lifecycle entry point
+│   ├── Assets.xcassets/          # AppIcon & AccentColor catalog
+│   ├── Theme/
+│   │   ├── AppColors.swift       # Semantic hex colors, gradients & dark canvas
+│   │   └── DesignTokens.swift    # Radii, glassmorphic modifiers, spacing
+│   ├── Models/
+│   │   ├── UserProfile.swift     # User model, intentions, personality insights
+│   │   ├── MatchProfile.swift    # AI match model, vibe tags, profile metadata
+│   │   ├── MatchAnalysis.swift   # Strengths, challenges, dimension metrics
+│   │   ├── ChatMessage.swift     # Chat bubbles, sender enums, suggestion pills
+│   │   └── DatingCoachTopic.swift# AI Coach playbooks, categories, prompts
+│   ├── MockData/
+│   │   └── MockDataProvider.swift# Curated sample database of matches & dialogues
+│   ├── Components/
+│   │   ├── GlassCard.swift       # Reusable frosted glass container
+│   │   ├── SoulButton.swift      # Gradient CTA buttons with haptics & states
+│   │   ├── CompatibilityBadge.swift # Pulsing score gauge pill
+│   │   ├── TagPillView.swift     # Selectable and static trait/interest chips
+│   │   └── BackgroundAtmosphereView.swift # Ambient floating blurred gradient orbs
+│   ├── Navigation/
+│   │   ├── AppState.swift        # Central state & sheet coordinator
+│   │   └── MainTabView.swift     # Floating glass tab bar
+│   ├── ViewModels/
+│   │   ├── OnboardingViewModel.swift # Step navigation & AI bio synthesizer
+│   │   ├── DiscoverViewModel.swift   # Swipe card physics & deck lifecycle
+│   │   ├── MatchViewModel.swift      # Match filtering & search
+│   │   ├── AIChatViewModel.swift     # Simulated typing & message generation
+│   │   ├── DatingCoachViewModel.swift# Relationship advice engine
+│   │   └── ProfileViewModel.swift    # Bio tone regeneration & profile state
+│   └── Views/
+│       ├── Onboarding/OnboardingView.swift
+│       ├── Discover/
+│       │   ├── DiscoverView.swift
+│       │   └── Components/
+│       │       ├── ProfileCardView.swift
+│       │       └── MatchCelebrationModal.swift
+│       ├── Match/
+│       │   ├── MatchListView.swift
+│       │   └── MatchDetailView.swift
+│       ├── Chat/AIChatView.swift
+│       ├── Coach/DatingCoachView.swift
+│       └── Profile/ProfileView.swift
 ```
 
 ## 3. Key Design Patterns & Engineering Highlights

@@ -1,28 +1,41 @@
-# UI/UX Design System - SoulAI
+# UI/UX Design System - SoulAI (Editorial Light Mode)
 
-## 1. Visual Philosophy
-SoulAI combines **Apple Human Interface Guidelines** with a modern luxury dark-mode aesthetic. The interface evokes intimacy, curiosity, and high-tech intelligence through deep obsidian backgrounds punctuated by electric rose, cyber violet, and glowing aurora teal accents.
+## 1. Design Philosophy
+SoulAI is designed as an **editorial, lifestyle-first dating experience** that feels like a premium modern relationship companion rather than a productivity tool or generic AI utility.
 
-## 2. Color Palette & Gradients
+### Core Feeling:
+> *"AI understands your personality and helps you find meaningful connections."*
+
+---
+
+## 2. Color Palette & Tokens
 | Token | Hex / Value | Semantic Use |
 |---|---|---|
-| `AppColors.primaryRose` | `#FF2E63` | Primary brand accent, Like actions, heart highlights |
-| `AppColors.electricViolet` | `#7928CA` | Neural accents, gradient transitions |
-| `AppColors.auroraTeal` | `#00F5D4` | AI Synergy, active match badges, super likes |
-| `AppColors.sunsetAmber` | `#FF9E38` | Rewind actions, challenges & warnings |
-| `AppColors.backgroundDark` | `#0B0D14` | Midnight obsidian canvas |
-| `AppColors.cardSurface` | `#171C2B` | Elevated glass card backgrounds |
-| `AppColors.soulGradient` | Rose to Violet | Main CTA buttons, active state chips, hero titles |
+| `AppColors.accentCoral` | `#FF5A7A` | The ONE distinctive accent color (CTA, Likes, Selected Tab, Sparkles) |
+| `AppColors.softPeach` | `#FFF0ED` | Subtle accent container background for quotes & insights |
+| `AppColors.backgroundWarm` | `#FAF8F5` | Warm off-white canvas |
+| `AppColors.surfaceWhite` | `#FFFFFF` | Clean white card and pill surfaces |
+| `AppColors.surfaceNeutral` | `#F3EFEA` | Soft warm grey for unselected elements & received chat bubbles |
+| `AppColors.textPrimary` | `#1C1917` | Charcoal primary text (high contrast, warm) |
+| `AppColors.textSecondary` | `#78716C` | Warm grey metadata and captions |
+| `AppColors.onlineGreen` | `#22C55E` | Online presence indicator |
+| `AppColors.borderSubtle` | `Color.black.opacity(0.06)` | Thin, clean surface dividers |
+| `AppColors.subtleShadow` | `Color.black.opacity(0.05)` | Soft Gaussian blur shadow |
 
-## 3. Typography & Hierarchy
-- **Title 1 / Headers**: Rounded Bold / Black (`28pt` - `32pt`), high-impact branding.
-- **Section Headers**: Rounded Semi-Bold (`18pt`), clear visual grouping.
-- **Category Caps**: System Bold (`11pt`), uppercase with soft lilac color.
-- **Body Text**: System Regular / Medium (`13pt` - `15pt`), clean legibility with `1.4` line-height spacing.
+---
 
-## 4. Components & Micro-Interactions
-- **`GlassCard`**: Frosted glass card with 1px border stroke and deep drop shadow.
-- **`SoulButton`**: Spring press scaling (`0.97` factor), haptic impact generator (`UIImpactFeedbackGenerator`), and soft glow.
-- **`CompatibilityBadge`**: Pulsing animated ring with repeating sparkle SF symbol.
-- **`BackgroundAtmosphereView`**: 3 floating blurred orbs oscillating on 8-second continuous ease loops.
-- **Card Swipe Feedback**: Dynamic rotation `degrees(offset.width / 18)` with threshold badges.
+## 3. Typography & Hierarchy (Apple SF Pro)
+- **Hero Headline**: `30pt` - `34pt` Serif Bold (`.design: .serif`), used on Discover name, Match title, and headers.
+- **Section Titles**: `20pt` - `24pt` Serif/Rounded Bold.
+- **Body & Quotes**: `15pt` - `16pt` Regular / Italic Serif (`"Finds beauty in ordinary moments."`).
+- **Metadata & Category Caps**: `11pt` - `13pt` System Medium/Bold with clean letter-spacing.
+
+---
+
+## 4. Reusable UI Components
+- **`ProfileCard`**: 75% height hero card with full-bleed portrait photography, rounded corners (28px), subtle shadow, name overlay, 3-4 clean tags, and an elegant quote.
+- **`FloatingTabBar`**: Minimal floating white capsule with subtle shadow, minimal SF icons, and coral active selection.
+- **`SoulButton` / `PrimaryButton`**: Confident deep coral CTA with spring press physics (`.scaleEffect(0.98)`).
+- **`TagPillView` / `InterestChip`**: Clean white/neutral capsule with subtle border, charcoal text, and coral active state.
+- **`CompatibilityBadge`**: Minimal white capsule with coral sparkle and `"96% match"` score.
+- **`MatchCelebrationModal`**: Emotional match overlay with overlapping circular photos, percentage, and one emotional insight sentence.
